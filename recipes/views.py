@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 
 def home(req):
-    return HttpResponse('Home')
+    return render(req, 'recipes/home.html')
 
 
 def contato(req):
