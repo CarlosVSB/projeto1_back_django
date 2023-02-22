@@ -3,12 +3,11 @@
 <body>
     {% include 'recipes/partials/header.html' %}
     
-    <div class="search-container">
-        <div class="container">
-            <form action="" class="search-form">
-                <input type="search" class="search-input" name="search">
-                <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
-            </form>
+    {% include 'recipes/partials/search.html' %}
+
+    <div class="main-content-container">
+        <div class="main-content main-content-list container">
+            {% include 'recipes/partials/recipe.html' %}
         </div>
     </div>
 </body>
