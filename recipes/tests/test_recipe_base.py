@@ -4,11 +4,8 @@ from recipes.models import Category, Recipe, User
 
 
 class RecipeTestBase(TestCase):
-    def setUp(self) -> None:
-        return super().setUp()
-
-    def make_category(self, category='Category'):
-        return Category.objects.create(name='Categoria')
+    def make_category(self, name='Category'):
+        return Category.objects.create(name=name)
 
     def make_author(
         self,
