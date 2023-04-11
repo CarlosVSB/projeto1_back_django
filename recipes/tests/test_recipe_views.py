@@ -69,6 +69,16 @@ class RecipeViewsTest(RecipeTestBase):
         # testa se a única receita cadastrada foi exibida
         self.assertIn(needed_title, content)
 
+    def test_recipe_category_template_dont_load_recipes_not_published(self):
+        """Test if recipes with is_publisehd = False dont load on view home"""
+        # cria uma receita não publicada para esse teste
+        recipe = self.make_recipe(is_published=False)
+        response = self.client.get(reverse('recipes:category', kwargs={
+                                   'category_id': recipe.category.id}))
+
+        # testa se nenhuma receita é exibida
+        self.assertEqual(response.status_code, 404)
+
     def test_recipe_detail_view_function_is_correct(self):
         view = resolve(reverse('recipes:recipe', kwargs={'id': 1}))
         self.assertIs(view.func, views.recipe)
@@ -88,3 +98,13 @@ class RecipeViewsTest(RecipeTestBase):
 
         # testa se a única receita cadastrada foi exibida
         self.assertIn(needed_title, content)
+
+    def test_recipe_detail_template_dont_load_recipe_not_published(self):
+        """Test if recipes with is_publisehd = False dont load on view home"""
+        # cria uma receita não publicada para esse teste
+        recipe = self.make_recipe(is_published=False)
+        response = self.client.get(
+            reverse('recipes:recipe', kwargs={'id': recipe.id}))
+
+        # testa se nenhuma receita é exibida
+        self.assertEqual(response.status_code, 404)
