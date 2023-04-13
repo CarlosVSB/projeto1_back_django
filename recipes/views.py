@@ -32,3 +32,7 @@ def recipe(req, id):
         'recipe': recipe,
         'is_detail_page': True,
     })
+
+
+def search(req):
+    return render(req, 'recipes/pages/search.html')
